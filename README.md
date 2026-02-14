@@ -37,13 +37,19 @@ A [Pi](https://github.com/badlogic/pi) extension that brings Ghostty's native te
 ## Install
 
 ```bash
-pi install git:github.com/HazAT/pi-ghostty
+pi install npm:pi-ghostty
 ```
 
 Or try it without installing:
 
 ```bash
-pi -e git:github.com/HazAT/pi-ghostty
+pi -e npm:pi-ghostty
+```
+
+You can also install from git:
+
+```bash
+pi install git:github.com/HazAT/pi-ghostty
 ```
 
 ## How it works
