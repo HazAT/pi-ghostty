@@ -1,4 +1,4 @@
-<video src="https://github.com/HazAT/pi-ghostty/raw/master/assets/demo.mp4" autoplay loop muted playsinline width="100%"></video>
+<!-- TO ADD VIDEO: Edit this README on GitHub, drag-drop assets/demo.mp4 into the editor, and replace this comment with the generated URL -->
 
 # pi-ghostty
 
