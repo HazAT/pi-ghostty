@@ -1,0 +1,18 @@
+{
+  "name": "pi-ghostty",
+  "version": "1.0.0",
+  "description": "Ghostty terminal integration for Pi — dynamic title bar, progress indicators, and error states",
+  "keywords": ["pi-package"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HazAT/pi-ghostty"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  },
+  "pi": {
+    "extensions": ["./extensions"],
+    "video": "https://github.com/HazAT/pi-ghostty/raw/master/assets/demo.mp4"
+  }
+}
