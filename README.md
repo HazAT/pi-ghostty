@@ -6,18 +6,22 @@ A [Pi](https://github.com/badlogic/pi) extension that brings Ghostty's native te
 
 ## Features
 
-**Dynamic window title** — Always shows your project directory, session name, and current model:
+**Dynamic window title** — Shows your project directory and current model at a glance. Session name is included when set:
 ```
-π my-project · refactor-auth · claude-sonnet-4
+π my-project · claude-sonnet-4
+π my-project · my-session · claude-sonnet-4
 ```
 
-**Animated spinner** — A braille spinner animates in the title bar while the agent is working, so you know Pi is thinking even when the tab is in the background.
-
-**Tool tracking** — The title updates to show the currently executing tool:
+**Animated spinner** — A braille spinner animates in the title bar while the agent is working, so you know Pi is thinking even when the tab is in the background:
 ```
-⠹ π my-project · Bash
-⠹ π my-project · Read
-⠹ π my-project · Edit
+⠹ π my-project · claude-sonnet-4
+```
+
+**Tool tracking** — When a tool executes, the title swaps the model name for the active tool so you can see exactly what Pi is doing:
+```
+⠹ π my-project · bash
+⠹ π my-project · read
+⠹ π my-project · edit
 ```
 
 **Native progress bar** — Uses Ghostty's built-in OSC 9;4 progress indicator:
