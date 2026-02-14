@@ -3,8 +3,7 @@
  *
  * Shows a dynamic window title with project, session, and model info.
  * Animates a braille spinner and pulses Ghostty's native progress bar
- * while the agent is working. Shows error state (red bar) on tool failures,
- * and a brief completion flash when the agent finishes successfully.
+ * while the agent is working, with a brief completion flash when done.
  */
 
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
@@ -16,7 +15,6 @@ const BRAILLE_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", 
 let currentModel: string | undefined;
 let sessionName: string | undefined;
 let isWorking = false;
-let hadError = false;
 let currentTool: string | undefined;
 let spinnerTimer: ReturnType<typeof setInterval> | undefined;
 let completionTimer: ReturnType<typeof setTimeout> | undefined;
@@ -51,14 +49,13 @@ function startSpinner(ctx: { ui: { setTitle: (title: string) => void } }) {
 		completionTimer = undefined;
 	}
 	isWorking = true;
-	hadError = false;
 	currentTool = undefined;
 	frameIndex = 0;
 	setProgress(3);
 	spinnerTimer = setInterval(() => {
 		const frame = BRAILLE_FRAMES[frameIndex % BRAILLE_FRAMES.length];
 		frameIndex++;
-		const extra = currentTool ? `${currentTool}` : undefined;
+		const extra = currentTool ?? undefined;
 		ctx.ui.setTitle(`${frame} ${buildTitle(extra)}`);
 	}, 80);
 }
@@ -70,25 +67,12 @@ function stopSpinner(ctx: { ui: { setTitle: (title: string) => void } }) {
 		clearInterval(spinnerTimer);
 		spinnerTimer = undefined;
 	}
-
-	if (hadError) {
-		setProgress(2);
-		ctx.ui.setTitle(buildTitle("error"));
-		completionTimer = setTimeout(() => {
-			setProgress(0);
-			ctx.ui.setTitle(buildTitle());
-			completionTimer = undefined;
-		}, 3000);
-	} else {
-		setProgress(1, 100);
-		ctx.ui.setTitle(buildTitle());
-		completionTimer = setTimeout(() => {
-			setProgress(0);
-			completionTimer = undefined;
-		}, 800);
-	}
-
-	hadError = false;
+	setProgress(1, 100);
+	ctx.ui.setTitle(buildTitle());
+	completionTimer = setTimeout(() => {
+		setProgress(0);
+		completionTimer = undefined;
+	}, 800);
 }
 
 export default function (pi: ExtensionAPI) {
@@ -119,8 +103,7 @@ export default function (pi: ExtensionAPI) {
 		currentTool = event.toolName;
 	});
 
-	pi.on("tool_execution_end", async (event, _ctx) => {
-		if (event.isError) hadError = true;
+	pi.on("tool_execution_end", async (_event, _ctx) => {
 		currentTool = undefined;
 	});
 

@@ -26,8 +26,7 @@ A [Pi](https://github.com/badlogic/pi) extension that brings Ghostty's native te
 
 **Native progress bar** — Uses Ghostty's built-in OSC 9;4 progress indicator:
 - 🔵 **Indeterminate pulse** while the agent is thinking or running tools
-- 🟢 **Green completion flash** (100%) when the agent finishes successfully
-- 🔴 **Red error bar** when a tool execution fails (visible for 3 seconds)
+- 🟢 **Green completion flash** (100%) when the agent finishes
 
 ## Requirements
 
@@ -62,9 +61,7 @@ The extension hooks into Pi's lifecycle events and writes [OSC escape sequences]
 | `model_select` | Update model name | — |
 | `agent_start` | Start spinner | Indeterminate pulse |
 | `tool_execution_start` | Show tool name | — |
-| `tool_execution_end` (error) | — | Mark error |
-| `agent_end` (success) | Stop spinner | Green 100% → clear |
-| `agent_end` (error) | Show "error" | Red bar → clear (3s) |
+| `agent_end` | Stop spinner | Green 100% → clear |
 | `session_shutdown` | — | Clear |
 
 ## License
