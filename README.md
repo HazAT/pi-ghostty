@@ -1,4 +1,6 @@
-<!-- TO ADD VIDEO: Edit this README on GitHub, drag-drop assets/demo.mp4 into the editor, and replace this comment with the generated URL -->
+
+https://github.com/user-attachments/assets/70335937-849d-4404-89bf-5078cefe6efe
+
 
 # pi-ghostty
 
